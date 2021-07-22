@@ -1,0 +1,10 @@
+title: "Kappa"
+remote_theme: pmarsceill/just-the-docs
+search_enabled: true
+
+# LaTeX math equation support
+use_math: true
+
+# kramdown
+kramdown:
+  math_engine: mathjax
