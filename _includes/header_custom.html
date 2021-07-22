@@ -9,3 +9,10 @@
     <script type="text/javascript" src="{{ site.baseurl }}/assets/js/{{ js_file }}.js" async></script>
   {% endfor %}
 {% endif %}
+
+{% if page.external_js %}
+  {% for js_file in page.external_js %}
+    <script src="{{ js_file }}" async></script>
+  {% endfor %}
+{% endif %}
+
