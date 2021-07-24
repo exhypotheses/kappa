@@ -3,9 +3,10 @@ var optionSelected;
 var seriesOptions = [];
 var dropdown = $("#option_selector");
 
-// This could be a page hook component that ensures that a page illustrates a variety of graphs w.r.t. the
-// same variable of interest
-var url = "https://raw.githubusercontent.com/exhypotheses/risk/develop/warehouse/evaluations/disaggregates/metrics/credit_history.json";
+// var url = "https://raw.githubusercontent.com/exhypotheses/risk/develop/warehouse/evaluations/disaggregates/metrics/credit_history.json";
+var url = document.getElementById("metrics").getAttribute("url")
+var project = document.getElementById("metrics").getAttribute("project")
+
 
 // Draw
 $.getJSON(url, function (data) {
@@ -109,10 +110,10 @@ function generateChart(fileNameKey) {
             },
 
             title: {
-                text: "Binary Classification Evaluations"
+                text: "Binary Classification"
             },
             subtitle: {
-                text: "The Loan Risk Problem\n"
+                text: "\n" + project + "\n"
             },
 
             credits: {
