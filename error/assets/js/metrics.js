@@ -60,7 +60,7 @@ $.getJSON(url, function (calculations){
 
         legend: {
             enabled: true,
-            x: 35
+            x: 25
         },
 
         xAxis: {
