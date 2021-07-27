@@ -18,7 +18,7 @@ $.getJSON(url, function (calculations){
         visible = true;
 
          seriesOptions[i] = {
-            name: calculations[i].name,
+            name: calculations[i].description,
             visible: visible,
             data: calculations[i].data
         };
@@ -91,7 +91,7 @@ $.getJSON(url, function (calculations){
 
         yAxis: {
             title: {
-                text: "Estimates"
+                text: "Tally"
             },
             maxPadding: 0.05,
             endOnTick: false
