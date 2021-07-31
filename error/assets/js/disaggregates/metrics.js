@@ -3,7 +3,6 @@ var optionSelected;
 var seriesOptions = [];
 var dropdown = $("#option_selector");
 
-// var url = "https://raw.githubusercontent.com/exhypotheses/risk/develop/warehouse/evaluations/disaggregates/metrics/credit_history.json";
 var url = document.getElementById("metrics").getAttribute("url")
 var project = document.getElementById("metrics").getAttribute("project")
 
