@@ -1,10 +1,9 @@
 var Highcharts;
 var optionSelected;
-var seriesOptions = [];
 var dropdown = $("#option_selector");
 
-var url = document.getElementById("metrics").getAttribute("url")
-var project = document.getElementById("metrics").getAttribute("project")
+var url = document.getElementById("metrics").getAttribute("url");
+var project = document.getElementById("metrics").getAttribute("project");
 
 
 // Draw
