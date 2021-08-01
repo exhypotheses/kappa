@@ -3,9 +3,8 @@ var seriesOptions = [];
 var url = document.getElementById("metrics").getAttribute("url");
 var project = document.getElementById("metrics").getAttribute("project");
 
-// var fileNameKey = "https://raw.githubusercontent.com/exhypotheses/risk/develop/warehouse/evaluations/overarching/metrics.json"
 
-// Generate graphs
+// Generate curves
 $.getJSON(url, function (calculations){
 
     // https://api.highcharts.com/highstock/tooltip.pointFormat
@@ -19,7 +18,7 @@ $.getJSON(url, function (calculations){
 
         visible = true;
 
-         seriesOptions[i] = {
+        seriesOptions[i] = {
             name: calculations[i].name,
             visible: visible,
             data: calculations[i].data
