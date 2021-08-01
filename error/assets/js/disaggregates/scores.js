@@ -1,5 +1,6 @@
 var Highcharts;
 var seriesOptions = [];
+
 var url = document.getElementById("scores").getAttribute("url")
 var project = document.getElementById("scores").getAttribute("project")
 
@@ -76,7 +77,7 @@ $.getJSON(url, function(calculations){
             itemMarginTop: 2,
             itemMarginBottom: 2,
             y: 25,
-            x: 0
+            x: 25
         },
 
         // https://api.highcharts.com/highcharts/pane
