@@ -137,5 +137,3 @@ $.getJSON(url, function (calculations){
     });
 
 });
-
-
