@@ -40,7 +40,7 @@ $.getJSON(url, function(calculations){
         },
 
         title: {
-            text: 'Error Matrix Metrics',
+            text: 'Binary Classification\nPerformance by Field',
             x: 0
         },
         subtitle: {
