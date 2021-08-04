@@ -1,7 +1,7 @@
 var Highcharts;
 var seriesOptions = [];
-var url = document.getElementById("associations").getAttribute("url");
-var project = document.getElementById("associations").getAttribute("project");
+var url = document.getElementById("categorical").getAttribute("url");
+var project = document.getElementById("categorical").getAttribute("project");
 
 $.getJSON(url, function(calculations){
 
@@ -10,7 +10,7 @@ $.getJSON(url, function(calculations){
     // https://api.highcharts.com/highcharts/tooltip.headerFormat
     // https://www.highcharts.com/demo/stock/compare
 
-
+   
     // Data
     var associations = [];
     for (var i = 0; i < calculations.length; i += 1) {
@@ -47,7 +47,8 @@ $.getJSON(url, function(calculations){
         xAxis: {
             title: {
                 enabled: true,
-                text: '<i>p value</i>'
+                useHTML: false,
+                text: "<i>p value</i><br><span style='font-size: 16px'>&#120594;</span>²"
             },
             startOnTick: true,
             endOnTick: true,
@@ -65,7 +66,7 @@ $.getJSON(url, function(calculations){
         },
         tooltip: {
             headerFormat: '<span style="font-size: 13px; color:{point.color}">\u25CF ',
-            pointFormat: "<b>{point.name}</b></span><br>p value: {point.x}<br>Cramer's V: {point.y}"
+            pointFormat: "<b>{point.name}</b></span><br><i>p value</i>: {point.x}<br>Cramer's V: {point.y}"
         },
         plotOptions: {
             scatter: {
