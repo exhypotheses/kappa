@@ -37,19 +37,17 @@ $.getJSON(url, function(calculations){
         },
 
         title: {
-            text: 'Error Matrix Metrics',
-            x: -60
+            text: 'Binary Classification',
+            x: 0
 
+        },
+        subtitle: {
+            text: '\n' + project + '\n'
         },
 
         credits: {
             enabled: false
         },
-        
-        // https://api.highcharts.com/highcharts/pane
-        /* pane: {
-            size: '80%'
-        }, */
 
         // https://api.highcharts.com/highcharts/xAxis.tickmarkPlacement
         xAxis: {
@@ -68,32 +66,26 @@ $.getJSON(url, function(calculations){
 
         tooltip: {
             shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.2f}</b><br/>'
+            pointFormat: '<span style="color:{series.color}"><b>{point.y:,.2f}</b></span>'
         },
 
-        /* legend: {
-            align: 'right',
-            verticalAlign: 'middle',
+        // https://api.highcharts.com/highcharts/pane
+        pane: {
+            size: '65%'
+        },
+
+        legend: {
+            align: 'center',
+            verticalAlign: 'bottom',
             layout: 'vertical'
-        }, */
+        },
 
         series: seriesOptions,
 
         responsive: {
             rules: [{
                 condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        align: 'right',
-                        verticalAlign: 'bottom',
-                        layout: 'vertical',
-                        width: '100px'
-                    },
-                    pane: {
-                        size: '65%'
-                    }
+                    maxWidth: 300
                 }
             }]
         }
