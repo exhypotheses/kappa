@@ -48,8 +48,6 @@ $.getJSON(url, function (calculations){
             type: "line",
             zoomType: "xy",
             marginTop: 85
-            // height: 300,
-            // width: 300
         },
 
         title: {
