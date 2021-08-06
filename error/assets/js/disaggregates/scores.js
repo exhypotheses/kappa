@@ -34,17 +34,17 @@ $.getJSON(url, function(calculations){
 
         chart: {
             polar: true,
-            type: 'spline'
-            // marginTop: 25
+            type: 'spline',
+            marginTop: 105
             // marginBottom: 35
         },
 
         title: {
-            text: 'Binary Classification\nPerformance by Field',
+            text: '\n' + project + '\n',
             x: 0
         },
         subtitle: {
-            text: "\n" + project + "\n"
+            text: 'Binary Classification Metrics of<br>Categorical Field Elements<br><span style="color: lightgrey">(at optimal threshold)</span>'
         },
 
         credits: {
