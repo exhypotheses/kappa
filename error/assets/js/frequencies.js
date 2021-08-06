@@ -42,14 +42,16 @@ $.getJSON(url, function (calculations){
 
         chart: {
             type: "line",
-            zoomType: "xy"
+            zoomType: "xy",
+            marginTop: 85
         },
 
         title: {
-            text: "Binary Classification"
+            text: '\n' + project + '\n',
+            x: 0
         },
         subtitle: {
-            text: "\n" + project + "\n"
+            text: 'Binary Classification Frequencies'
         },
 
         credits: {
@@ -58,6 +60,15 @@ $.getJSON(url, function (calculations){
 
         legend: {
             enabled: true,
+            layout: 'horizontal',
+            align: 'center',
+            itemStyle: {
+                fontSize: '10px',
+            },
+            verticalAlign: 'bottom',
+            margin: 20,
+            itemMarginTop: 2,
+            itemMarginBottom: 2,
             x: 35
         },
 
@@ -91,7 +102,7 @@ $.getJSON(url, function (calculations){
 
         yAxis: {
             title: {
-                text: "Tally"
+                text: "Frequencies"
             },
             maxPadding: 0.05,
             endOnTick: false
@@ -109,9 +120,9 @@ $.getJSON(url, function (calculations){
 
         tooltip: {
             shared: true,
-            headerFormat: '<span style="font-size: 13px; color:{point.color}">\u25CF {point.x:,.2f}</span>',
+            headerFormat: '<span style="font-size: 13px; color:#aab597">\u25CF {point.x:,.2f}</span>',
             pointFormat: '<br/><p><br/>' +
-                '{series.name}: {point.y}<br/></p>' ,
+                '<span style="color:{point.color}">{series.name}</span>: {point.y}<br/></p>' ,
             style: {
                 fontSize: "11px"
             }
@@ -121,9 +132,9 @@ $.getJSON(url, function (calculations){
             series: {
                 marker: {
                     enabled: true,
-                    radius: 2
+                    radius: 1
                 },
-                lineWidth: 1,
+                lineWidth: 0.5,
                 dataLabels: {
                     enabled: false
                 },
@@ -131,7 +142,15 @@ $.getJSON(url, function (calculations){
             }
         },
 
-        series: seriesOptions
+        series: seriesOptions,
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 300                    
+                }
+            }]
+        }
 
     });
 
