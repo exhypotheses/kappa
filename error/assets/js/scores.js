@@ -33,16 +33,20 @@ $.getJSON(url, function(calculations){
 
         chart: {
             polar: true,
-            type: 'spline'
+            type: 'spline',
+            marginTop: 45
         },
 
         title: {
-            text: 'Binary Classification',
+            text: '\n' + project + '\n',
             x: 0
 
         },
         subtitle: {
-            text: '\n' + project + '\n'
+            text: 'Binary Classification Metrics<br>at optimal threshold',
+            style: {
+                // "color": "#cccccc"
+            }
         },
 
         credits: {
@@ -71,13 +75,14 @@ $.getJSON(url, function(calculations){
 
         // https://api.highcharts.com/highcharts/pane
         pane: {
-            size: '65%'
+            size: '55%'
         },
 
         legend: {
             align: 'center',
             verticalAlign: 'bottom',
-            layout: 'vertical'
+            layout: 'vertical',
+            enabled: false
         },
 
         series: seriesOptions,
@@ -85,7 +90,7 @@ $.getJSON(url, function(calculations){
         responsive: {
             rules: [{
                 condition: {
-                    maxWidth: 300
+                    maxWidth: 250
                 }
             }]
         }
