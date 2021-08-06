@@ -16,10 +16,13 @@ $.getJSON(url, function (calculations){
     // Split
     for (var i = 0; i < (calculations.length - 1); i += 1) {
 
-        visible = true;
+        if (['precision', 'sensitivity', 'specificity', 'matthews'].includes(calculations[i].name))
+            visible = true;
+        else
+            visible = false;        
 
         seriesOptions[i] = {
-            name: calculations[i].name,
+            name: calculations[i].description,
             visible: visible,
             data: calculations[i].data
         };
@@ -43,14 +46,18 @@ $.getJSON(url, function (calculations){
 
         chart: {
             type: "line",
-            zoomType: "xy"
+            zoomType: "xy",
+            marginTop: 85
+            // height: 300,
+            // width: 300
         },
 
         title: {
-            text: "Binary Classification"
+            text: '\n' + project + '\n',
+            x: 0
         },
         subtitle: {
-            text: "\n" + project + "\n"
+            text: 'Binary Classification Metrics'
         },
 
         credits: {
@@ -59,14 +66,26 @@ $.getJSON(url, function (calculations){
 
         legend: {
             enabled: true,
-            x: 25
+            layout: 'horizontal',
+            align: 'center',
+            itemStyle: {
+                fontSize: '10px',
+                width: '100px',
+                textOverflow: 'ellipsis'
+            },
+            verticalAlign: 'bottom',
+            margin: 20,
+            itemMarginTop: 2,
+            itemMarginBottom: 2,
+            x: 6.3,
+            y: 5
         },
 
         xAxis: {
             title: {
                 text: "Threshold"
             },
-            maxPadding: 0.05,
+            maxPadding: 0.1,
             gridLineWidth: 1,
             plotLines: [{
                 color: "#5D686D",
@@ -75,7 +94,7 @@ $.getJSON(url, function (calculations){
                 value: calculations[j].data.x,
                 label: {
                     rotation: 0,
-                    y: 170,  // From the top of the graph and downward
+                    y: 110,  // From the top of the graph and downward
                     x: 2,   // From this line
                     style: {
                         color: "#5D686D",
@@ -95,6 +114,7 @@ $.getJSON(url, function (calculations){
                 text: "Estimates"
             },
             maxPadding: 0.05,
+            min: 0,
             endOnTick: false
         },
 
@@ -122,9 +142,9 @@ $.getJSON(url, function (calculations){
             series: {
                 marker: {
                     enabled: true,
-                    radius: 2
+                    radius: 1
                 },
-                lineWidth: 1,
+                lineWidth: 0.5,
                 dataLabels: {
                     enabled: false
                 },
@@ -132,7 +152,15 @@ $.getJSON(url, function (calculations){
             }
         },
 
-        series: seriesOptions
+        series: seriesOptions,
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 300                    
+                }
+            }]
+        }
 
     });
 
