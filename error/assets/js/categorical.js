@@ -33,13 +33,14 @@ $.getJSON(url, function(calculations){
 
         chart: {
             type: 'scatter',
-            zoomType: 'xy'
+            zoomType: 'xy',
+            marginTop: 105
         },
         title: {
-            text: 'Associations'
+            text: '\n' + project + '\n'
         },
         subtitle: {
-            text: '\n' + project + '\n'
+            text: 'Degree of Association<br>between categorical fields & target'
         },
         credits: {
             enabled: false
@@ -53,7 +54,12 @@ $.getJSON(url, function(calculations){
             startOnTick: true,
             endOnTick: true,
             showLastLabel: true,
-            type: 'logarithmic'
+            type: 'logarithmic',
+            plotBands: [{
+                color: '#f6f6f6',
+                from: 0,
+                to: 0.001
+            }]
         },
         yAxis: {
             title: {
@@ -74,8 +80,11 @@ $.getJSON(url, function(calculations){
                     enabled: true,
                     format: '{point.name}',
                     style: {
-                        textOverflow: 'clip',
-                        fontSize: 8
+                        textOverflow: 'ellipsis',
+                        width: '65px',
+                        fontSize: '10px',
+                        fontWeight: 'light',
+                        color: 'grey'
                     }
                 },
                 marker: {
