@@ -3,7 +3,7 @@ var optionSelected;
 var dropdown = $("#option_selector");
 
 var url = document.getElementById("metrics").getAttribute("url");
-var project = document.getElementById("metrics").getAttribute("project");
+var variable = document.getElementById("metrics").getAttribute("variable");
 
 
 // Draw
@@ -55,6 +55,8 @@ function generateChart(fileNameKey) {
         for (var i = 0; i < (calculations.length - 1); i += 1) {
 
             if (calculations[i].name.match(fileNameKey)) {
+
+                var description = calculations[i].description;
 
                 for (var j = 0; j < calculations[i].data.length; j += 1) {
 
@@ -127,14 +129,18 @@ function generateChart(fileNameKey) {
             chart: {
                 type: "spline",
                 zoomType: "xy",
-                marginTop: 85
+                marginTop: 105
             },
 
             title: {
-                text: "Binary Classification"
+                text: 'Binary Classification<br>Metrics'
             },
             subtitle: {
-                text: "\n" + project + "\n"
+                text: '\nElement <b>' + fileNameKey + ' (' + description + ')</b> of<br>variable <b>' + variable + '</b>\n',
+                style: { 
+                    "fontSize": "11px",
+                    "fontWeight": "light"
+                }
             },
 
             credits: {
@@ -148,13 +154,15 @@ function generateChart(fileNameKey) {
                 layout: 'horizontal',
                 itemDistance: 25, // Applies to horizontal layout
                 itemStyle: {
-                    fontSize: '10px',
-                    width: '83px',
+                    fontSize: '11px',
+                    width: '95px',
                     textOverflow: 'ellipsis'
                 },
                 margin: 11,
-                x: 6.9,
-                y: 13
+                itemMarginTop: 2,
+                itemMarginBottom: 2,
+                x: 8.9,
+                y: 21
             },
 
             xAxis: {
