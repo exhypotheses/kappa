@@ -2,7 +2,7 @@ var Highcharts;
 var seriesOptions = [];
 
 var url = document.getElementById("scores").getAttribute("url")
-var project = document.getElementById("scores").getAttribute("project")
+var variable = document.getElementById("scores").getAttribute("variable")
 
 $.getJSON(url, function(calculations){
 
@@ -36,15 +36,18 @@ $.getJSON(url, function(calculations){
             polar: true,
             type: 'spline',
             marginTop: 105
-            // marginBottom: 35
         },
 
         title: {
-            text: '\n' + project + '\n',
+            text: 'Binary Classification Metrics<br><span style="font-size: 13px">(at optimal threshold)</span>',
             x: 0
         },
         subtitle: {
-            text: 'Binary Classification Metrics of<br>Categorical Field Elements<br><span style="color: lightgrey">(at optimal threshold)</span>'
+            text: '\nPerformance of elements of <br>variable <b>' + variable + '</b>\n',
+                style: { 
+                    "fontSize": "11px",
+                    "fontWeight": "light"
+                }
         },
 
         credits: {
