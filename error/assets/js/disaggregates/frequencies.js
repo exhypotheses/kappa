@@ -110,7 +110,6 @@ function generateChart(fileNameKey) {
             title: {
                 text: 'Binary Classification<br>Frequencies',
                 style: { 
-                    "color": "#666666", 
                     "fontSize": "18px" 
                 }
             },
