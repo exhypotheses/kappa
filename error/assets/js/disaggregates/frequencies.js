@@ -4,7 +4,7 @@ var seriesOptions = [];
 var dropdown = $("#option_selector");
 
 var url = document.getElementById("frequencies").getAttribute("url")
-var project = document.getElementById("frequencies").getAttribute("project")
+var variable = document.getElementById("frequencies").getAttribute("variable")
 
 
 // Draw
@@ -55,6 +55,8 @@ function generateChart(fileNameKey) {
 
             if (calculations[i].name.match(fileNameKey)) {
 
+                var description = calculations[i].description;
+
                 for (var j = 0; j < calculations[i].data.length; j += 1) {
 
                     tp.push({
@@ -101,14 +103,23 @@ function generateChart(fileNameKey) {
 
             chart: {
                 type: "line",
-                zoomType: "xy"
+                zoomType: "xy",
+                marginTop: 105
             },
 
             title: {
-                text: "Binary Classification"
+                text: 'Binary Classification<br>Frequencies',
+                style: { 
+                    "color": "#666666", 
+                    "fontSize": "18px" 
+                }
             },
             subtitle: {
-                text: "\n" + project + "\n"
+                text: '\nElement <b>' + fileNameKey + ' (' + description + ')</b> of<br>variable <b>' + variable + '</b>\n',
+                style: { 
+                    "fontSize": "11px",
+                    "fontWeight": "light"
+                }
             },
 
             credits: {
@@ -117,7 +128,7 @@ function generateChart(fileNameKey) {
 
             legend: {
                 enabled: true,
-                x: 35
+                x: 15
             },
 
             xAxis: {
@@ -150,7 +161,7 @@ function generateChart(fileNameKey) {
 
             yAxis: {
                 title: {
-                    text: "Tally"
+                    text: "Frequencies"
                 },
                 maxPadding: 0.05,
                 endOnTick: false
@@ -161,7 +172,8 @@ function generateChart(fileNameKey) {
                     contextButton: {
                         menuItems: ["viewFullscreen", "printChart", "separator",
                             "downloadPNG", "downloadJPEG", "downloadPDF", "downloadSVG", "separator",
-                            "downloadXLS", "downloadCSV"]
+                            "downloadXLS", "downloadCSV"],
+                        x: 15
                     }
                 }
             },
@@ -180,9 +192,9 @@ function generateChart(fileNameKey) {
                 series: {
                     marker: {
                         enabled: true,
-                        radius: 2
+                        radius: 1
                     },
-                    lineWidth: 1,
+                    lineWidth: 0.5,
                     dataLabels: {
                         enabled: false
                     },
