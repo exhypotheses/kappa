@@ -1,6 +1,6 @@
 var Highcharts;
-var url = document.getElementById("auc").getAttribute("url");
-var project = document.getElementById("auc").getAttribute("project");
+var url = document.getElementById("roc").getAttribute("url");
+var project = document.getElementById("roc").getAttribute("project");
 
 $.getJSON(url, function (calculations){
 
@@ -41,14 +41,15 @@ $.getJSON(url, function (calculations){
 
         chart: {
             type: "line",
-            zoomType: "xy"
+            zoomType: "xy",
+            marginTop: 95
         },
 
         title: {
-            text: "Binary Classification"
+            text: '\n' + project + '\n'
         },
         subtitle: {
-            text: "\n" + project + "\n"
+            text: 'Receiver Operating Characteristics<br>TPR/FPR Curve'
         },
 
         credits: {
@@ -56,7 +57,7 @@ $.getJSON(url, function (calculations){
         },
 
         legend: {
-            enabled: true,
+            enabled: false,
             x: 50
         },
 
@@ -81,7 +82,8 @@ $.getJSON(url, function (calculations){
                 contextButton: {
                     menuItems: ["viewFullscreen", "printChart", "separator",
                         "downloadPNG", "downloadJPEG", "downloadPDF", "downloadSVG", "separator",
-                        "downloadXLS", "downloadCSV"]
+                        "downloadXLS", "downloadCSV"],
+                    x: 9
                 }
             }
         },
@@ -89,8 +91,8 @@ $.getJSON(url, function (calculations){
         tooltip: {
             shared: true,
             headerFormat: '<span style="font-size: 13px; color:{point.color}">\u25CF</span>',
-            pointFormat: ' &nbsp; at threshold: {point.name}<br/><p>' +
-                '({point.x:,.2f}, {point.y:,.2f})<br/></p>',
+            pointFormat: ' &nbsp; At threshold: {point.name}<br/><p>' +
+                'False Positive Rate: {point.x:,.2f}<br>True Positive Rate: {point.y:,.2f}<br/></p>',
             style: {
                 fontSize: "11px"
             }

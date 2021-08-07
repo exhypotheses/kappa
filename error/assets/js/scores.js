@@ -33,23 +33,25 @@ $.getJSON(url, function(calculations){
 
         chart: {
             polar: true,
-            type: 'spline'
+            type: 'spline',
+            marginTop: 45
         },
 
         title: {
-            text: 'Error Matrix Metrics',
-            x: -60
+            text: '\n' + project + '\n',
+            x: 0
 
+        },
+        subtitle: {
+            text: 'Binary Classification Metrics<br>at optimal threshold',
+            style: {
+                // "color": "#cccccc"
+            }
         },
 
         credits: {
             enabled: false
         },
-        
-        // https://api.highcharts.com/highcharts/pane
-        /* pane: {
-            size: '80%'
-        }, */
 
         // https://api.highcharts.com/highcharts/xAxis.tickmarkPlacement
         xAxis: {
@@ -68,32 +70,27 @@ $.getJSON(url, function(calculations){
 
         tooltip: {
             shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.2f}</b><br/>'
+            pointFormat: '<span style="color:{series.color}"><b>{point.y:,.2f}</b></span>'
         },
 
-        /* legend: {
-            align: 'right',
-            verticalAlign: 'middle',
-            layout: 'vertical'
-        }, */
+        // https://api.highcharts.com/highcharts/pane
+        pane: {
+            size: '55%'
+        },
+
+        legend: {
+            align: 'center',
+            verticalAlign: 'bottom',
+            layout: 'vertical',
+            enabled: false
+        },
 
         series: seriesOptions,
 
         responsive: {
             rules: [{
                 condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        align: 'right',
-                        verticalAlign: 'bottom',
-                        layout: 'vertical',
-                        width: '100px'
-                    },
-                    pane: {
-                        size: '65%'
-                    }
+                    maxWidth: 250
                 }
             }]
         }

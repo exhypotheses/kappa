@@ -3,7 +3,7 @@ var optionSelected;
 var dropdown = $("#option_selector");
 
 var url = document.getElementById("metrics").getAttribute("url");
-var project = document.getElementById("metrics").getAttribute("project");
+var variable = document.getElementById("metrics").getAttribute("variable");
 
 
 // Draw
@@ -47,12 +47,16 @@ function generateChart(fileNameKey) {
         // https://www.highcharts.com/demo/stock/compare
 
         // Variables
-        var precision = [], sensitivity = [], specificity = [], fscore= [], balancedAccuracy = [];
+        var precision = [], sensitivity = [], specificity = [], fpr = [], 
+            fscore= [], youden = [], matthews = [], balancedAccuracy = [], 
+            standardAccuracy = [];
 
         // Split
         for (var i = 0; i < (calculations.length - 1); i += 1) {
 
             if (calculations[i].name.match(fileNameKey)) {
+
+                var description = calculations[i].description;
 
                 for (var j = 0; j < calculations[i].data.length; j += 1) {
 
@@ -71,14 +75,34 @@ function generateChart(fileNameKey) {
                         y: calculations[i].data[j].specificity
                     });
 
+                    fpr.push({
+                        x: calculations[i].data[j].threshold,
+                        y: calculations[i].data[j].fpr
+                    });
+
                     fscore.push({
                         x: calculations[i].data[j].threshold,
                         y: calculations[i].data[j].fscore
                     });
 
+                    youden.push({
+                        x: calculations[i].data[j].threshold,
+                        y: calculations[i].data[j].youden
+                    });
+
+                    matthews.push({
+                        x: calculations[i].data[j].threshold,
+                        y: calculations[i].data[j].matthews
+                    });
+
                     balancedAccuracy.push({
                         x: calculations[i].data[j].threshold,
                         y: calculations[i].data[j].balanced_accuracy
+                    });
+
+                    standardAccuracy.push({
+                        x: calculations[i].data[j].threshold,
+                        y: calculations[i].data[j].standard_accuracy
                     });
 
                 }
@@ -103,15 +127,20 @@ function generateChart(fileNameKey) {
         Highcharts.chart("container0011", {
 
             chart: {
-                type: "line",
-                zoomType: "xy"
+                type: "spline",
+                zoomType: "xy",
+                marginTop: 105
             },
 
             title: {
-                text: "Binary Classification"
+                text: 'Binary Classification<br>Metrics'
             },
             subtitle: {
-                text: "\n" + project + "\n"
+                text: '\nElement <b>' + fileNameKey + ' (' + description + ')</b> of<br>variable <b>' + variable + '</b>\n',
+                style: { 
+                    "fontSize": "11px",
+                    "fontWeight": "light"
+                }
             },
 
             credits: {
@@ -120,7 +149,20 @@ function generateChart(fileNameKey) {
 
             legend: {
                 enabled: true,
-                x: 50
+                align: 'center',
+                verticalAlign: 'bottom',
+                layout: 'horizontal',
+                itemDistance: 25, // Applies to horizontal layout
+                itemStyle: {
+                    fontSize: '11px',
+                    width: '95px',
+                    textOverflow: 'ellipsis'
+                },
+                margin: 11,
+                itemMarginTop: 2,
+                itemMarginBottom: 2,
+                x: 8.9,
+                y: 21
             },
 
             xAxis: {
@@ -136,7 +178,7 @@ function generateChart(fileNameKey) {
                     value: calculations[j].data.x,
                     label: {
                         rotation: 0,
-                        y: 170, // From the top of the graph and downward
+                        y: 110, // From the top of the graph and downward
                         x: 2, // From this line
                         style: {
                             color: "#5D686D",
@@ -147,16 +189,20 @@ function generateChart(fileNameKey) {
                         text: calculations[j].description
                     },
                     zIndex: 3
-                }]
-
+                }],
+                gridLineColor: '#fafafa',
+                lineWidth: 0.25
             },
 
             yAxis: {
                 title: {
                     text: "estimates"
                 },
+                gridLineColor: '#fafafa',
                 maxPadding: 0.05,
-                endOnTick: false
+                endOnTick: false,
+                startOTick: false,
+                tickInterval: 0.25
             },
 
             exporting: {
@@ -171,9 +217,9 @@ function generateChart(fileNameKey) {
 
             tooltip: {
                 shared: true,
-                headerFormat: '<span style="font-size: 13px; color:{point.color}">\u25CF {point.x:,.2f}</span>',
+                headerFormat: '<span style="font-size: 13px; color:#aab597">\u25CF {point.x:,.2f}</span>',
                 pointFormat: '<br/><p><br/>' +
-                    '{series.name}: {point.y:,.2f}<br/></p>' ,
+                    '<span style="color:{point.color}">{series.name}</span>: {point.y:,.2f}<br/></p>' ,
                 style: {
                     fontSize: "11px"
                 }
@@ -183,9 +229,9 @@ function generateChart(fileNameKey) {
                 series: {
                     marker: {
                         enabled: true,
-                        radius: 2
+                        radius: 1
                     },
-                    lineWidth: 1,
+                    lineWidth: 0.05,
                     dataLabels: {
                         enabled: false
                     },
@@ -194,25 +240,37 @@ function generateChart(fileNameKey) {
             },
 
             series: [{
-                    type: "spline",
                     name: "Precision",
                     data: precision
                 },{
-                    type: "spline",
                     name: "Sensitivity",
                     data: sensitivity
                 },{
-                    type: "spline",
                     name: "Specificity",
                     data: specificity
                 },{
-                   type: "spline",
-                   name: "F1 Score",
-                   data: specificity
+                    name: "False Positive Rate",
+                    data: fpr,
+                    visible: false
                 },{
-                    type: "spline",
+                   name: "F1 Score",
+                   data: specificity,
+                   visible: false
+                },{
+                    name: "Youden's J Statistic",
+                    data: youden,
+                    visible: false
+                },{
+                    name: "Matthews Correlation Coefficient",
+                    data: matthews
+                },{
                     name: "Balanced Accuracy",
-                    data: balancedAccuracy
+                    data: balancedAccuracy,
+                    visible: false
+                },{
+                    name: "Standard Accuracy",
+                    data: standardAccuracy,
+                    visible: false
                 }
             ]
 

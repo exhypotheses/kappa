@@ -2,7 +2,7 @@ var Highcharts;
 var seriesOptions = [];
 
 var url = document.getElementById("scores").getAttribute("url")
-var project = document.getElementById("scores").getAttribute("project")
+var variable = document.getElementById("scores").getAttribute("variable")
 
 $.getJSON(url, function(calculations){
 
@@ -34,17 +34,20 @@ $.getJSON(url, function(calculations){
 
         chart: {
             polar: true,
-            type: 'spline'
-            // marginTop: 25
-            // marginBottom: 35
+            type: 'spline',
+            marginTop: 105
         },
 
         title: {
-            text: 'Error Matrix Metrics',
+            text: 'Binary Classification Metrics<br><span style="font-size: 13px">(at optimal threshold)</span>',
             x: 0
         },
         subtitle: {
-            text: "\n" + project + "\n"
+            text: '\nPerformance of elements of <br>variable <b>' + variable + '</b>\n',
+                style: { 
+                    "fontSize": "11px",
+                    "fontWeight": "light"
+                }
         },
 
         credits: {
