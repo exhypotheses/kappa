@@ -55,6 +55,7 @@ jQuery.getJSON(url, function (calculations){
         },
         subtitle: {
             text: 'Binary Classification<br>Metrics',
+            x: 25,
             y: 35
         },
 
@@ -128,9 +129,9 @@ jQuery.getJSON(url, function (calculations){
 
         tooltip: {
             shared: true,
-            headerFormat: '<span style="font-size: 13px; color:{point.color}">\u25CF {point.x:,.2f}</span>',
+            headerFormat: '<p><span style="font-size: 13px; color:#aab597">\u25CF {point.x:,.2f}</span></p>',
             pointFormat: '<br/><p><br/>' +
-                '{series.name}: {point.y:,.2f}<br/></p>' ,
+                '<span style="color:{point.color}">{series.name}</span>: {point.y:,.2f}<br/></p>' ,
             style: {
                 fontSize: "11px"
             }
