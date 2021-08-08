@@ -51,6 +51,7 @@ jQuery.getJSON(url, function (calculations){
         },
         subtitle: {
             text: 'Binary Classification<br>Frequencies',
+            x: 25,
             y: 35
         },
 
