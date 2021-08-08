@@ -1,11 +1,10 @@
 var Highcharts;
 var seriesOptions = [];
 var url = document.getElementById("frequencies").getAttribute("url");
-var project = document.getElementById("frequencies").getAttribute("project");
 
 
 // Generate graphs
-$.getJSON(url, function (calculations){
+jQuery.getJSON(url, function (calculations){
 
     // https://api.highcharts.com/highstock/tooltip.pointFormat
     // https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/bubble
@@ -17,7 +16,7 @@ $.getJSON(url, function (calculations){
 
         visible = true;
 
-         seriesOptions[i] = {
+        seriesOptions[i] = {
             name: calculations[i].description,
             visible: visible,
             data: calculations[i].data
@@ -47,11 +46,12 @@ $.getJSON(url, function (calculations){
         },
 
         title: {
-            text: '\n' + project + '\n',
+            text: '',
             x: 0
         },
         subtitle: {
-            text: 'Binary Classification Frequencies'
+            text: 'Binary Classification<br>Frequencies',
+            y: 35
         },
 
         credits: {
@@ -82,7 +82,7 @@ $.getJSON(url, function (calculations){
                 color: "#5D686D",
                 dashStyle: "solid",
                 width: 0.5,
-                value: calculations[j].data.x,
+                value: calculations[j].data[0].optimal,
                 label: {
                     rotation: 0,
                     y: 15,  // From the top of the graph and downward
@@ -93,7 +93,7 @@ $.getJSON(url, function (calculations){
                         fontSize: "10px",
                         width: "40px"   // Limits the text width
                     },
-                    text: calculations[j].description
+                    text: 'Optimal Threshold'
                 },
                 zIndex: 3
             }]
@@ -113,7 +113,8 @@ $.getJSON(url, function (calculations){
                 contextButton: {
                     menuItems: ["viewFullscreen", "printChart", "separator",
                         "downloadPNG", "downloadJPEG", "downloadPDF", "downloadSVG", "separator",
-                        "downloadXLS", "downloadCSV"]
+                        "downloadXLS", "downloadCSV"],
+                    x: 9
                 }
             }
         },
