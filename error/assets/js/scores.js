@@ -7,7 +7,7 @@ var url = document.getElementById("scores").getAttribute("url")
 var project = document.getElementById("scores").getAttribute("project")
 
 
-$.getJSON(url, function(calculations){
+jQuery.getJSON(url, function(calculations){
 
     // https://api.highcharts.com/highstock/tooltip.pointFormat
     // https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/bubble
@@ -17,6 +17,10 @@ $.getJSON(url, function(calculations){
 
     // Categories
     var categories = calculations.categories;
+
+
+    // Model Properties: Optimal Threshold
+    var optimal = calculations.model.data[0].optimal.toFixed(2);
 
 
     // Values    
@@ -43,7 +47,7 @@ $.getJSON(url, function(calculations){
 
         },
         subtitle: {
-            text: 'Binary Classification Metrics<br>at optimal threshold',
+            text: 'Binary Classification Metrics<br>at optimal threshold (' + optimal + ')',
             style: {
                 // "color": "#cccccc"
             }
@@ -65,7 +69,9 @@ $.getJSON(url, function(calculations){
         yAxis: {
             gridLineInterpolation: 'polygon',
             lineWidth: 0,
-            min: 0
+            min: 0,
+            max: 1,
+            tickInterval: 0.5
         },
 
         tooltip: {
