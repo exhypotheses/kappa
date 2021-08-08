@@ -1,6 +1,5 @@
 var Highcharts;
 var url = document.getElementById("roc").getAttribute("url");
-var project = document.getElementById("roc").getAttribute("project");
 
 jQuery.getJSON(url, function (calculations){
 
