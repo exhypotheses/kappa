@@ -42,12 +42,13 @@ jQuery.getJSON(url, function(calculations){
         },
 
         title: {
-            text: '\n' + project + '\n',
+            text: '',
             x: 0
 
         },
         subtitle: {
             text: 'Binary Classification Metrics<br>at optimal threshold (' + optimal + ')',
+            y: 35,
             style: {
                 // "color": "#cccccc"
             }
@@ -72,6 +73,17 @@ jQuery.getJSON(url, function(calculations){
             min: 0,
             max: 1,
             tickInterval: 0.5
+        },
+
+        exporting: {
+            buttons: {
+                contextButton: {
+                    menuItems: ["viewFullscreen", "printChart", "separator",
+                        "downloadPNG", "downloadJPEG", "downloadPDF", "downloadSVG", "separator",
+                        "downloadXLS", "downloadCSV"],
+                    x: 9
+                }
+            }
         },
 
         tooltip: {
