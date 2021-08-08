@@ -1,7 +1,9 @@
 var Highcharts;
 var url = document.getElementById("roc").getAttribute("url");
 
+
 jQuery.getJSON(url, function (calculations){
+
 
     // The area under the tpr/fpr curve
     var j = calculations.length - 1;
@@ -52,6 +54,7 @@ jQuery.getJSON(url, function (calculations){
         },
         subtitle: {
             text: 'Receiver Operating Characteristics<br>TPR/FPR Curve (AUC: ' + auc + ')',
+            x: 15,
             y: 35
         },
 
