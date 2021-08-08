@@ -5,7 +5,7 @@ var project = document.getElementById("metrics").getAttribute("project");
 
 
 // Generate curves
-$.getJSON(url, function (calculations){
+jQuery.getJSON(url, function (calculations){
 
     // https://api.highcharts.com/highstock/tooltip.pointFormat
     // https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/bubble
@@ -89,7 +89,7 @@ $.getJSON(url, function (calculations){
                 color: "#5D686D",
                 dashStyle: "solid",
                 width: 0.5,
-                value: calculations[j].data.x,
+                value: calculations[j].data[0].optimal,
                 label: {
                     rotation: 0,
                     y: 110,  // From the top of the graph and downward
@@ -100,7 +100,7 @@ $.getJSON(url, function (calculations){
                         fontSize: "10px",
                         width: "40px"   // Limits the text width
                     },
-                    text: calculations[j].description
+                    text: 'Optimal Threshold'
                 },
                 zIndex: 3
             }]
