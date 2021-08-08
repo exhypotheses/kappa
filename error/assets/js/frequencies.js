@@ -1,7 +1,6 @@
 var Highcharts;
 var seriesOptions = [];
 var url = document.getElementById("frequencies").getAttribute("url");
-var project = document.getElementById("frequencies").getAttribute("project");
 
 
 // Generate graphs
