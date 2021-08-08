@@ -4,7 +4,6 @@ var seriesOptions = [];
 var dropdown = $("#option_selector");
 
 var url = document.getElementById("scores").getAttribute("url")
-var project = document.getElementById("scores").getAttribute("project")
 
 
 jQuery.getJSON(url, function(calculations){
@@ -38,7 +37,7 @@ jQuery.getJSON(url, function(calculations){
         chart: {
             polar: true,
             type: 'spline',
-            marginTop: 45
+            marginTop: 35
         },
 
         title: {
@@ -93,7 +92,7 @@ jQuery.getJSON(url, function(calculations){
 
         // https://api.highcharts.com/highcharts/pane
         pane: {
-            size: '55%'
+            size: '60%'
         },
 
         legend: {
