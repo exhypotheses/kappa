@@ -1,7 +1,6 @@
 var Highcharts;
 var seriesOptions = [];
 var url = document.getElementById("metrics").getAttribute("url");
-var project = document.getElementById("metrics").getAttribute("project");
 
 
 // Generate curves
