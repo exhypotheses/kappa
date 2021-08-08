@@ -51,11 +51,12 @@ jQuery.getJSON(url, function (calculations){
         },
 
         title: {
-            text: '\n' + project + '\n',
+            text: '',
             x: 0
         },
         subtitle: {
-            text: 'Binary Classification Metrics'
+            text: 'Binary Classification<br>Metrics',
+            y: 35
         },
 
         credits: {
