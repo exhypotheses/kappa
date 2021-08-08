@@ -47,11 +47,12 @@ jQuery.getJSON(url, function (calculations){
         },
 
         title: {
-            text: '\n' + project + '\n',
+            text: '',
             x: 0
         },
         subtitle: {
-            text: 'Binary Classification Frequencies'
+            text: 'Binary Classification<br>Frequencies',
+            y: 35
         },
 
         credits: {
@@ -113,7 +114,8 @@ jQuery.getJSON(url, function (calculations){
                 contextButton: {
                     menuItems: ["viewFullscreen", "printChart", "separator",
                         "downloadPNG", "downloadJPEG", "downloadPDF", "downloadSVG", "separator",
-                        "downloadXLS", "downloadCSV"]
+                        "downloadXLS", "downloadCSV"],
+                    x: 9
                 }
             }
         },
