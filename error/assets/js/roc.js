@@ -49,10 +49,11 @@ jQuery.getJSON(url, function (calculations){
         },
 
         title: {
-            text: '\n' + project + '\n'
+            text: ''
         },
         subtitle: {
-            text: 'Receiver Operating Characteristics<br>TPR/FPR Curve (AUC: ' + auc + ')'
+            text: 'Receiver Operating Characteristics<br>TPR/FPR Curve (AUC: ' + auc + ')',
+            y: 35
         },
 
         credits: {
