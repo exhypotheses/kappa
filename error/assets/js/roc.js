@@ -2,34 +2,36 @@ var Highcharts;
 var url = document.getElementById("roc").getAttribute("url");
 var project = document.getElementById("roc").getAttribute("project");
 
-$.getJSON(url, function (calculations){
+jQuery.getJSON(url, function (calculations){
 
-    var auc = [];
-
+    // The area under the tpr/fpr curve
+    var j = calculations.length - 1;
+    var auc = (calculations[j].data[0].roc).toFixed(2);
     
-    for (var i = 0; i < (calculations.length - 1); i += 1) {
 
+    // Get TPR & FPR series identifiers
+    for (var i = 0; i < (calculations.length - 1); i += 1) {
         if (calculations[i].name.match("sensitivity")) {
             var ordinates = i;
         }
-
-        if (calculations[i].name.match("specificity")) {
+        if (calculations[i].name.match("fpr")) {
             var abscissae = i;
         }
-
     }
 
-    for (var i = 0; i < calculations[ordinates].data.length; i += 1) {
 
-        auc.push({
-            x: 1 - calculations[abscissae].data[i].y,   // (1 - specificity) = false positive rate
-            y: calculations[ordinates].data[i].y,       // sensitivity
+    // The graph data
+    var roc = [];
+    for (var i = 0; i < calculations[ordinates].data.length; i += 1) {
+        roc.push({
+            x: calculations[abscissae].data[i].y,   // fpr = (1 - specificity)
+            y: calculations[ordinates].data[i].y,   // sensitivity, i.e., tpr
             name: (calculations[ordinates].data[i].x).toFixed(2)   // the threshold value
         });
-
     }
 
-    // Graphing
+
+    // Options
     Highcharts.setOptions({
         lang: {
             thousandsSep: ","
@@ -37,6 +39,7 @@ $.getJSON(url, function (calculations){
     });
 
 
+    // Graphing
     Highcharts.chart("container", {
 
         chart: {
@@ -49,7 +52,7 @@ $.getJSON(url, function (calculations){
             text: '\n' + project + '\n'
         },
         subtitle: {
-            text: 'Receiver Operating Characteristics<br>TPR/FPR Curve'
+            text: 'Receiver Operating Characteristics<br>TPR/FPR Curve (AUC: ' + auc + ')'
         },
 
         credits: {
@@ -114,8 +117,8 @@ $.getJSON(url, function (calculations){
 
         series: [{
             type: "spline",
-            name: "AUC",
-            data: auc
+            name: "TPR/FPR Curve",
+            data: roc
         }]
 
     });
