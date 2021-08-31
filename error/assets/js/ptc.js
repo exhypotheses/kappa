@@ -39,7 +39,7 @@ jQuery.getJSON(url, function (calculations){
 
 
     // Graphing
-    Highcharts.chart("container", {
+    Highcharts.chart("container0003", {
 
         chart: {
             type: "line",
