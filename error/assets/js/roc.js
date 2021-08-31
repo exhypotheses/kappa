@@ -7,7 +7,7 @@ jQuery.getJSON(url, function (calculations){
 
     // The area under the tpr/fpr curve
     var j = calculations.length - 1;
-    var auc = (calculations[j].data[0].roc).toFixed(2);
+    var auc = (calculations[j].data.roc).toFixed(2);
     
 
     // Get TPR & FPR series identifiers
@@ -72,7 +72,8 @@ jQuery.getJSON(url, function (calculations){
                 text: "fall-out<br>false positive rate"
             },
             maxPadding: 0.05,
-            gridLineWidth: 1
+            gridLineWidth: 1,
+            crosshair: true
         },
 
         yAxis: {
@@ -80,8 +81,27 @@ jQuery.getJSON(url, function (calculations){
                 text: calculations[ordinates].name + "<br> true positive rate"
             },
             maxPadding: 0.05,
-            endOnTick: false
+            endOnTick: false,
+            crosshair: true
         },
+
+        annotations: [{
+            draggable: 'xy',
+            labels: [{
+                point: {
+                    xAxis: 0,
+                    yAxis: 0,
+                    x: calculations[j].data.fpr,
+                    y: calculations[j].data.sensitivity
+                },
+                x: 39,
+                y: 69,
+                text: 'Threshold Point ' + (calculations[j].data.optimal).toFixed(3) +
+                    '<br>\&nbsp; \u25CF TPR: ' + (calculations[j].data.sensitivity).toFixed(3) + 
+                    '<br>\&nbsp; \u25CF FPR: ' + (calculations[j].data.fpr).toFixed(3)
+            }]
+
+        }],
 
         exporting: {
             buttons: {
