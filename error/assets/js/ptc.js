@@ -5,7 +5,7 @@ jQuery.getJSON(url, function (calculations){
 
     // The area under the precision/tpr curve
     var j = calculations.length - 1;
-    var auc = (calculations[j].data[0].ptc).toFixed(2);
+    var auc = (calculations[j].data.ptc).toFixed(2);
     
 
     // Get TPR & FPR series identifiers
@@ -70,7 +70,8 @@ jQuery.getJSON(url, function (calculations){
                 text: calculations[abscissae].name + "<br> true positive rate"
             },
             maxPadding: 0.05,
-            gridLineWidth: 1
+            gridLineWidth: 1,
+            crosshair: true
         },
 
         yAxis: {
@@ -81,8 +82,27 @@ jQuery.getJSON(url, function (calculations){
             tickInterval: 0.25,
             // min: 0,
             // max: 1,
-            endOnTick: false
+            endOnTick: false,
+            crosshair: true
         },
+
+        annotations: [{
+            draggable: 'xy',
+            labels: [{
+                point: {
+                    xAxis: 0,
+                    yAxis: 0,
+                    x: calculations[j].data.precision,
+                    y: calculations[j].data.sensitivity
+                },
+                x: -72,
+                y: 39,
+                text: 'Threshold Point ' + (calculations[j].data.optimal).toFixed(3) + 
+                    '<br> \&nbsp; \u25CF Precision: ' + (calculations[j].data.precision).toFixed(3) + 
+                    '<br> \&nbsp; \u25CF Sensitivity: ' + (calculations[j].data.sensitivity).toFixed(3)
+            }]
+
+        }],
 
         exporting: {
             buttons: {
