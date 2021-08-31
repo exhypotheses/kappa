@@ -90,7 +90,7 @@ jQuery.getJSON(url, function (calculations){
                 color: "#5D686D",
                 dashStyle: "solid",
                 width: 0.5,
-                value: calculations[j].data[0].optimal,
+                value: calculations[j].data.optimal,
                 label: {
                     rotation: 0,
                     y: 110,  // From the top of the graph and downward
