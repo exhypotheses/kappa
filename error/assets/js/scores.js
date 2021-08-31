@@ -32,7 +32,7 @@ jQuery.getJSON(url, function(calculations){
 
             
     // Container
-    Highcharts.chart("container", {
+    Highcharts.chart("container0001", {
 
         chart: {
             polar: true,
@@ -116,7 +116,7 @@ jQuery.getJSON(url, function(calculations){
 
 }).fail(function () {
     console.log("Missing");
-    $("#container").empty();
+    $("#container0001").empty();
 });
 
 
