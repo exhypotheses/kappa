@@ -13,7 +13,10 @@
   <body>
 
     <table style="width: 55%; margin-left: 100px;">
-        <tr><th style="width: 40%;"></th><th style="width: 40%;"></th></tr>
+        <colgroup>
+            <col span="1" style="width: 40%;">
+            <col span="1" style="width: 40%;">
+        </colgroup>
         <tr>
             <td><script id="roc"
                 url="https://raw.githubusercontent.com/exhypotheses/risk/develop/warehouse/evaluations/model/metrics.json"
@@ -24,17 +27,25 @@
                 src="../assets/js/ptc.js" type="text/javascript"></script>
                 <div id="container0003" style="height: 350px; width: 300px; margin: 0 auto"></div></td>
         </tr>
+    </table>
+
+    <table style="width: 55%; margin-left: 150px; align-content: center;">
+        <colgroup>
+            <col span="1" style="text-align: center;">
+        </colgroup>
         <tr>
             <td><script id="scores"
                 url="https://raw.githubusercontent.com/exhypotheses/risk/develop/warehouse/evaluations/model/scores.json"
                 src="../assets/js/scores.js" type="text/javascript"></script>
                 <div id="container0001" style="height: 350px; width: 300px; margin: 0 auto"></div></td>
-            <td></td>
         </tr>
     </table>
 
     <table style="width: 55%; margin-left: 100px;">
-        <tr><th style="width: 35%;"></th><th style="width: 35%;"></th></tr>
+        <colgroup>
+            <col span="1" style="width: 35%;">
+            <col span="1" style="width: 35%;">
+        </colgroup>
         <tr>
             <td><script id="metrics"
                 url="https://raw.githubusercontent.com/exhypotheses/risk/develop/warehouse/evaluations/model/metrics.json"
