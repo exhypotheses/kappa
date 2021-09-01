@@ -19,7 +19,7 @@ jQuery.getJSON(url, function(calculations){
 
 
     // Model Properties: Optimal Threshold
-    var optimal = calculations.model.data[0].optimal.toFixed(2);
+    var optimal = calculations.model.data[0].optimal.toFixed(3);
 
 
     // Values    
@@ -37,20 +37,32 @@ jQuery.getJSON(url, function(calculations){
         chart: {
             polar: true,
             type: 'spline',
-            marginTop: 35
+            height: 310,
+            width: 290,
+            marginTop: 0
         },
 
         title: {
             text: '',
             x: 0
-
         },
-        subtitle: {
+        /* subtitle: {
             text: 'Binary Classification Metrics<br>at optimal threshold (' + optimal + ')',
-            y: 35,
+            y: 35
+        }, */
+        caption: {
+            text: 'The binary classification metrics at optimal threshold ' + optimal,
+            margin: 5,
             style: {
-                // "color": "#cccccc"
-            }
+                fontStyle: 'italic',
+                fontSize: '11px',
+                fontWeight: 'normal',
+                color: '#9fb7cd',
+                width: '80px'
+            },
+            x: 35,
+            y: 30,
+            floating: true
         },
 
         credits: {
@@ -87,12 +99,12 @@ jQuery.getJSON(url, function(calculations){
 
         tooltip: {
             shared: true,
-            pointFormat: '<span style="color:{series.color}"><b>{point.y:,.2f}</b></span>'
+            pointFormat: '<span style="color:{series.color}"><b>{point.y:,.3f}</b></span>'
         },
 
         // https://api.highcharts.com/highcharts/pane
         pane: {
-            size: '60%'
+            size: '57.5%'
         },
 
         legend: {
