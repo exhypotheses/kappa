@@ -42,7 +42,10 @@ jQuery.getJSON(url, function (calculations){
         chart: {
             type: "line",
             zoomType: "xy",
-            marginTop: 85
+            marginTop: 50,
+            marginBottom: 160,
+            height: 390,
+            width: 330,
         },
 
         title: {
@@ -50,9 +53,16 @@ jQuery.getJSON(url, function (calculations){
             x: 0
         },
         subtitle: {
-            text: 'Binary Classification<br>Frequencies',
-            x: 25,
-            y: 35
+            text: 'The binary classification frequencies',
+            x: 19,
+            y: 25,
+            style: {
+                fontStyle: 'italic',
+                fontSize: '11px',
+                fontWeight: 'normal',
+                color: 'grey',
+                width: '80px'
+            }
         },
 
         credits: {
@@ -67,10 +77,12 @@ jQuery.getJSON(url, function (calculations){
                 fontSize: '10px',
             },
             verticalAlign: 'bottom',
-            margin: 20,
+            margin: 40,
             itemMarginTop: 2,
             itemMarginBottom: 2,
-            x: 35
+            x: 7.5,
+            y: -40,
+            floating: true
         },
 
         xAxis: {
@@ -144,15 +156,15 @@ jQuery.getJSON(url, function (calculations){
             }
         },
 
-        series: seriesOptions,
+        series: seriesOptions
 
-        responsive: {
+        /* responsive: {
             rules: [{
                 condition: {
                     maxWidth: 300                    
                 }
             }]
-        }
+        } */
 
     });
 
