@@ -41,12 +41,15 @@ jQuery.getJSON(url, function (calculations){
     });
 
 
-    Highcharts.chart("container0009", {
+    Highcharts.chart("container0004", {
 
         chart: {
             type: "line",
             zoomType: "xy",
-            marginTop: 85
+            marginTop: 50,
+            marginBottom: 160,
+            height: 390,
+            width: 330,
         },
 
         title: {
@@ -54,8 +57,16 @@ jQuery.getJSON(url, function (calculations){
             x: 0
         },
         subtitle: {
-            text: 'Binary Classification<br>Metrics',
-            y: 35
+            text: 'The binary classification metrics',
+            x: 19,
+            y: 25,
+            style: {
+                fontStyle: 'italic',
+                fontSize: '11px',
+                fontWeight: 'normal',
+                color: 'grey',
+                width: '80px'
+            }
         },
 
         credits: {
@@ -72,11 +83,12 @@ jQuery.getJSON(url, function (calculations){
                 textOverflow: 'ellipsis'
             },
             verticalAlign: 'bottom',
-            margin: 20,
+            margin: 40,
             itemMarginTop: 2,
             itemMarginBottom: 2,
-            x: 6.3,
-            y: 5
+            x: 7.5,
+            y: 20,
+            floating: true
         },
 
         xAxis: {
@@ -89,7 +101,7 @@ jQuery.getJSON(url, function (calculations){
                 color: "#5D686D",
                 dashStyle: "solid",
                 width: 0.5,
-                value: calculations[j].data[0].optimal,
+                value: calculations[j].data.optimal,
                 label: {
                     rotation: 0,
                     y: 110,  // From the top of the graph and downward
@@ -128,9 +140,9 @@ jQuery.getJSON(url, function (calculations){
 
         tooltip: {
             shared: true,
-            headerFormat: '<span style="font-size: 13px; color:{point.color}">\u25CF {point.x:,.2f}</span>',
+            headerFormat: '<p><span style="font-size: 13px; color:#aab597">\u25CF {point.x:,.2f}</span></p>',
             pointFormat: '<br/><p><br/>' +
-                '{series.name}: {point.y:,.2f}<br/></p>' ,
+                '<span style="color:{point.color}">{series.name}</span>: {point.y:,.2f}<br/></p>' ,
             style: {
                 fontSize: "11px"
             }
@@ -150,15 +162,15 @@ jQuery.getJSON(url, function (calculations){
             }
         },
 
-        series: seriesOptions,
+        series: seriesOptions
 
-        responsive: {
+        /* responsive: {
             rules: [{
                 condition: {
                     maxWidth: 300                    
                 }
             }]
-        }
+        } */
 
     });
 

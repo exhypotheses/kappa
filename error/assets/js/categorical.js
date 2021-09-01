@@ -29,7 +29,7 @@ $.getJSON(url, function(calculations){
         }
     });
 
-    Highcharts.chart("container", {
+    Highcharts.chart("container0006", {
 
         chart: {
             type: 'scatter',

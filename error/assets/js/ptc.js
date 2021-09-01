@@ -1,32 +1,30 @@
 var Highcharts;
-var url = document.getElementById("roc").getAttribute("url");
-
+var url = document.getElementById("ptc").getAttribute("url");
 
 jQuery.getJSON(url, function (calculations){
 
-
-    // The area under the tpr/fpr curve
+    // The area under the precision/tpr curve
     var j = calculations.length - 1;
-    var auc = (calculations[j].data.roc).toFixed(2);
+    var auc = (calculations[j].data.ptc).toFixed(2);
     
 
     // Get TPR & FPR series identifiers
     for (var i = 0; i < (calculations.length - 1); i += 1) {
-        if (calculations[i].name.match("sensitivity")) {
+        if (calculations[i].name.match("precision")) {
             var ordinates = i;
         }
-        if (calculations[i].name.match("fpr")) {
+        if (calculations[i].name.match("sensitivity")) {
             var abscissae = i;
         }
     }
 
 
     // The graph data
-    var roc = [];
+    var ptc = [];
     for (var i = 0; i < calculations[ordinates].data.length; i += 1) {
-        roc.push({
-            x: calculations[abscissae].data[i].y,   // fpr = (1 - specificity)
-            y: calculations[ordinates].data[i].y,   // sensitivity, i.e., tpr
+        ptc.push({
+            x: calculations[abscissae].data[i].y,   // sensitivity, i.e., tpr
+            y: calculations[ordinates].data[i].y,   // precision
             name: (calculations[ordinates].data[i].x).toFixed(2)   // the threshold value
         });
     }
@@ -41,7 +39,7 @@ jQuery.getJSON(url, function (calculations){
 
 
     // Graphing
-    Highcharts.chart("container0002", {
+    Highcharts.chart("container0003", {
 
         chart: {
             type: "line",
@@ -60,12 +58,12 @@ jQuery.getJSON(url, function (calculations){
             text: ''
         },
         /* subtitle: {
-            text: 'Receiver Operating Characteristics<br>TPR/FPR Curve (AUC: ' + auc + ')',
-            x: 15,
+            text: 'Precision/TPR Curve<br>(AUC: ' + auc + ')',
+            x: 25,
             y: 35
         }, */
         caption: {
-            text: 'The Receiver Operating Characteristics,<br> i.e., the TPR/FPR Curve.  (AUC: ' + auc + ')',
+            text: 'The Precision/TPR Curve.  (AUC: ' + auc + ')<br> &nbsp;',
             margin: 5,
             style: {
                 fontStyle: 'italic',
@@ -90,7 +88,7 @@ jQuery.getJSON(url, function (calculations){
 
         xAxis: {
             title: {
-                text: "fall-out<br>false positive rate"
+                text: calculations[abscissae].name + "<br> true positive rate"
             },
             maxPadding: 0.05,
             gridLineWidth: 1,
@@ -99,13 +97,14 @@ jQuery.getJSON(url, function (calculations){
 
         yAxis: {
             title: {
-                text: calculations[ordinates].name + "<br> true positive rate"
+                text: calculations[ordinates].name + "<br> positive predictive value"
             },
             maxPadding: 0.05,
-            // tickInterval: 0.25,
+            // tickInterval: 0.25,            
             endOnTick: false,
             startOnTick: true,
-            crosshair: true
+            crosshair: true,
+            min: 0
         },
 
         annotations: [{
@@ -114,14 +113,14 @@ jQuery.getJSON(url, function (calculations){
                 point: {
                     xAxis: 0,
                     yAxis: 0,
-                    x: calculations[j].data.fpr,
+                    x: calculations[j].data.precision,
                     y: calculations[j].data.sensitivity
                 },
-                x: 39,
-                y: 69,
-                text: 'Threshold Point ' + (calculations[j].data.optimal).toFixed(3) +
-                    '<br>\&nbsp; \u25CF TPR: ' + (calculations[j].data.sensitivity).toFixed(3) + 
-                    '<br>\&nbsp; \u25CF FPR: ' + (calculations[j].data.fpr).toFixed(3)
+                x: -72,
+                y: 39,
+                text: 'Threshold Point ' + (calculations[j].data.optimal).toFixed(3) + 
+                    '<br> \&nbsp; \u25CF Precision: ' + (calculations[j].data.precision).toFixed(3) + 
+                    '<br> \&nbsp; \u25CF Sensitivity: ' + (calculations[j].data.sensitivity).toFixed(3)
             }]
 
         }],
@@ -141,7 +140,7 @@ jQuery.getJSON(url, function (calculations){
             shared: true,
             headerFormat: '<span style="font-size: 13px; color:{point.color}">\u25CF</span>',
             pointFormat: ' &nbsp; At threshold: {point.name}<br/><p>' +
-                'False Positive Rate: {point.x:,.2f}<br>True Positive Rate: {point.y:,.2f}<br/></p>',
+                'True Positive Rate: {point.x:,.2f}<br>Precision: {point.y:,.2f}<br/></p>',
             style: {
                 fontSize: "11px"
             }
@@ -163,8 +162,8 @@ jQuery.getJSON(url, function (calculations){
 
         series: [{
             type: "spline",
-            name: "TPR/FPR Curve",
-            data: roc
+            name: "Precision/TPR Curve",
+            data: ptc
         }]
 
     });

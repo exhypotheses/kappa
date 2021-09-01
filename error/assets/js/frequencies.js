@@ -37,12 +37,15 @@ jQuery.getJSON(url, function (calculations){
     });
 
 
-    Highcharts.chart("container0009", {
+    Highcharts.chart("container0005", {
 
         chart: {
             type: "line",
             zoomType: "xy",
-            marginTop: 85
+            marginTop: 50,
+            marginBottom: 160,
+            height: 390,
+            width: 330,
         },
 
         title: {
@@ -50,8 +53,16 @@ jQuery.getJSON(url, function (calculations){
             x: 0
         },
         subtitle: {
-            text: 'Binary Classification<br>Frequencies',
-            y: 35
+            text: 'The binary classification frequencies',
+            x: 19,
+            y: 25,
+            style: {
+                fontStyle: 'italic',
+                fontSize: '11px',
+                fontWeight: 'normal',
+                color: 'grey',
+                width: '80px'
+            }
         },
 
         credits: {
@@ -66,10 +77,12 @@ jQuery.getJSON(url, function (calculations){
                 fontSize: '10px',
             },
             verticalAlign: 'bottom',
-            margin: 20,
+            margin: 40,
             itemMarginTop: 2,
             itemMarginBottom: 2,
-            x: 35
+            x: 7.5,
+            y: -40,
+            floating: true
         },
 
         xAxis: {
@@ -82,7 +95,7 @@ jQuery.getJSON(url, function (calculations){
                 color: "#5D686D",
                 dashStyle: "solid",
                 width: 0.5,
-                value: calculations[j].data[0].optimal,
+                value: calculations[j].data.optimal,
                 label: {
                     rotation: 0,
                     y: 15,  // From the top of the graph and downward
@@ -143,15 +156,15 @@ jQuery.getJSON(url, function (calculations){
             }
         },
 
-        series: seriesOptions,
+        series: seriesOptions
 
-        responsive: {
+        /* responsive: {
             rules: [{
                 condition: {
                     maxWidth: 300                    
                 }
             }]
-        }
+        } */
 
     });
 
