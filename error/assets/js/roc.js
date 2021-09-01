@@ -46,16 +46,37 @@ jQuery.getJSON(url, function (calculations){
         chart: {
             type: "line",
             zoomType: "xy",
-            marginTop: 95
+            height: 310,
+            width: 290,
+            marginTop: 35,
+            marginBottom: 94,
+            style: {
+                fontSize: '10px',
+                fontWeight: 'bold',
+            }
         },
 
         title: {
             text: ''
         },
-        subtitle: {
+        /* subtitle: {
             text: 'Receiver Operating Characteristics<br>TPR/FPR Curve (AUC: ' + auc + ')',
             x: 15,
             y: 35
+        }, */
+        caption: {
+            text: 'The Receiver Operating Characteristics,<br> i.e., the TPR/FPR Curve.  (AUC: ' + auc + ')',
+            margin: 5,
+            style: {
+                fontStyle: 'italic',
+                fontSize: '11px',
+                fontWeight: 'normal',
+                color: '#9fb7cd',
+                width: '80px'
+            },
+            x: 55,
+            y: 30,
+            floating: true
         },
 
         credits: {
@@ -81,7 +102,9 @@ jQuery.getJSON(url, function (calculations){
                 text: calculations[ordinates].name + "<br> true positive rate"
             },
             maxPadding: 0.05,
+            // tickInterval: 0.25,
             endOnTick: false,
+            startOnTick: true,
             crosshair: true
         },
 
