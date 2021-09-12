@@ -2,7 +2,7 @@
     http://bl.ocks.org/ndarville/7075823
 */
 function makeGlossaryTable() {
-    d3.csv("https://raw.githubusercontent.com/miscellane/hub/develop/data/temporary/glossary.csv")
+    d3.text("https://raw.githubusercontent.com/miscellane/hub/develop/data/temporary/glossary.csv")
         .then(function(data){
 
             var parsedCSV = d3.csvParseRows(data);
