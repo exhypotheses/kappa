@@ -77,8 +77,7 @@ function generateChart(fileNameKey) {
                     fp.push({
                         x: calculations[i].data[j].threshold,
                         y: calculations[i].data[j].fp
-                    });
-                    
+                    });                    
 
                 }
 
