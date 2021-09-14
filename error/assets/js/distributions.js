@@ -54,7 +54,13 @@ function generateChart(fileNameKey){
             if(calculations[i].variable.match(fileNameKey)){
                 categories = calculations[i].categories;
                 seriesOptions = calculations[i].series;
+                variable = calculations[i].variable;
+                variableType = calculations[i].variableType;                
+                dataType = calculations[i].dataType;
+                unitOfMeasure = calculations[i].unitOfMeasure;
+                nullable = calculations[i].nullable;
                 description = calculations[i].description;
+                elements = JSON.stringify(calculations[i].elements);
             }
 
         }
@@ -138,8 +144,17 @@ function generateChart(fileNameKey){
 
         });
 
-
-
+        // id, width, height
+        const renderer = new Highcharts.Renderer(document.getElementById('notes'), 390, 300);
+        renderer.text('<b>VARIABLE</b>', 20, 20).add();
+        renderer.text('variable: ' + variable, 35, 40).add();
+        renderer.text('variable type: ' + variableType, 35, 60).add();
+        renderer.text('data type: ' + dataType, 35, 80).add();
+        renderer.text('unit of measure: ' + unitOfMeasure, 35, 100).add();
+        renderer.text('nullable: ' + nullable, 35, 120).add();
+        renderer.text('description: ' + description, 35, 140).add();
+        renderer.text('elements: ' + elements, 35, 160).add();
+        
     });
 
 }
