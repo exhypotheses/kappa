@@ -1,11 +1,14 @@
 <br>
 
-Upcoming.
+**About**
+
+* Classification model measures & metrics
 
 <br>
 <br>
 <br>
 <br>
+
 <br>
 <br>
 <br>
